@@ -12,32 +12,55 @@ const token = {
   },
 };
 
-export const register = createAsyncThunk('auth/register', async userDara => {
-  try {
-    const { data } = await axios.post(`/users/signup`, userDara);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-    console.log(error);
+export const register = createAsyncThunk(
+  'auth/register',
+  async (userDara, thunkAPI) => {
+    try {
+      const { data } = await axios.post(`/users/signup`, userDara);
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue();
+    }
   }
-});
+);
 
-export const logIn = createAsyncThunk('auth/login', async userData => {
+export const logIn = createAsyncThunk('auth/login', async (userData, thunkAPI) => {
   try {
     const { data } = await axios.post(`/users/login`, userData);
     token.set(data.token);
     return data;
   } catch (error) {
-    console.log(error);
+  
+    return thunkAPI.rejectWithValue();
   }
 });
 
-export const logout = createAsyncThunk('auth/logout', async () => {
- 
+export const logout = createAsyncThunk('auth/logout', async (_,thunkAPI) => {
   try {
     await axios.post('/users/logout');
     token.unset();
   } catch (error) {
-    console.log(error);
+    return thunkAPI.rejectWithValue();
   }
 });
+
+export const fetchCurrentUser = createAsyncThunk(
+  'auth/fresh',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persisterToken = state.auth.token;
+
+    if (persisterToken === null) {
+      return;
+    }
+    token.set(persisterToken);
+
+    try {
+      const { data } = await axios.get('/users/current');
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue();
+    }
+  }
+);

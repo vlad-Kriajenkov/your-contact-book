@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/your-contact-book/static/css/main.85d389b0.css",
-    "main.js": "/your-contact-book/static/js/main.3ee8d7c6.js",
+    "main.js": "/your-contact-book/static/js/main.8799b1e0.js",
     "static/media/Background.png": "/your-contact-book/static/media/Background.a915e3727418e85fbf88.png",
     "index.html": "/your-contact-book/index.html",
     "main.85d389b0.css.map": "/your-contact-book/static/css/main.85d389b0.css.map",
-    "main.3ee8d7c6.js.map": "/your-contact-book/static/js/main.3ee8d7c6.js.map"
+    "main.8799b1e0.js.map": "/your-contact-book/static/js/main.8799b1e0.js.map"
   },
   "entrypoints": [
     "static/css/main.85d389b0.css",
-    "static/js/main.3ee8d7c6.js"
+    "static/js/main.8799b1e0.js"
   ]
 }

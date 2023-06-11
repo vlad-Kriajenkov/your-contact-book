@@ -6,6 +6,7 @@ import {
   updated,
 } from './contact-operation';
 
+
 const initialState = {
   contacts: [],
   filter: '',

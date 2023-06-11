@@ -37,6 +37,7 @@ export const logIn = createAsyncThunk(
       token.set(data.token);
       return data;
     } catch (error) {
+      Notify.warning(`Oops, something's wrong.`);
       return thunkAPI.rejectWithValue();
     }
   }
@@ -47,6 +48,7 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     await axios.post('/users/logout');
     token.unset();
   } catch (error) {
+    Notify.warning(`Oops, something's wrong.`);
     return thunkAPI.rejectWithValue();
   }
 });
@@ -66,6 +68,7 @@ export const fetchCurrentUser = createAsyncThunk(
       const { data } = await axios.get('/users/current');
       return data;
     } catch (error) {
+    
       return thunkAPI.rejectWithValue();
     }
   }
